@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  tdl_postgres:
+    image: postgres
+    container_name: tdl_postgres
+    ports:
+      - '6500:5432'
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - tdl_postgres_data:/var/lib/postgresql/data
+  tdl_test_postgres:
+    image: postgres
+    container_name: tdl_test_postgres
+    ports:
+      - '6501:5432'
+    restart: always
+    environment:
+      - DATABASE_PORT=5432
+      - POSTGRES_PASSWORD=todo_list_pass
+      - POSTGRES_USER=todo_list_user
+      - POSTGRES_DB=todo_list_test_db
+      - POSTGRES_HOST=postgres
+      - POSTGRES_HOSTNAME=test_postgres
+    volumes:
+      - tdl_test_postgres_data:/var/lib/postgresql/data
+  tdl_web:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8002:8000"
+    depends_on:
+      - tdl_postgres
+      - tdl_test_postgres
+
+volumes:
+  tdl_postgres_data:
+  tdl_test_postgres_data:
