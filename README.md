@@ -3,10 +3,6 @@
     ```
     cp .env_example .env
     ```
-   If you want to use local python virtual env
-    ```
-    cp .env_local .env
-    ```
 2) Create and start containers
     ```
     docker-compose build
@@ -23,6 +19,6 @@
    ```
 5) Read the docs
    ```
-   http://127.0.0.1:8002/swagger/ # docker venv
-   http://127.0.0.1:8000/swagger/ # local venv
+   http://127.0.0.1:8002/swagger/ # swagger view
+   http://127.0.0.1:8002/redoc/ # redoc view
    ```
