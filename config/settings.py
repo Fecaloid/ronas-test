@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ronas_test',
-        'USER': 'ronas_test_user',
-        'PASSWORD': 'ronas_test_pass',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('POSTGRES_DB', 'ronas_test'),
+        'USER': os.getenv('POSTGRES_USER', 'ronas_test_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'ronas_test'),
+        'HOST': os.getenv('POSTGRES_HOSTNAME', 'ronas_postgres'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
 
     },
 }

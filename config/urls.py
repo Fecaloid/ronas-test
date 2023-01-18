@@ -17,7 +17,7 @@ from django.urls import path, include
 from .yazg import urlpatterns as doc_urls
 
 urlpatterns = [
-    path('test_api/', include('apps.urls'))
+    path('api/', include('apps.urls'))
 ]
 
 urlpatterns += doc_urls

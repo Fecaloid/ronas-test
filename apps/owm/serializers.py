@@ -14,24 +14,24 @@ class GetWeatherSerializer(serializers.Serializer):
 
 class WindSerializer(serializers.Serializer):
     speed = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Wind speed")
-    deg = serializers.IntegerField()
+    deg = serializers.IntegerField(help_text="Wind direction in deg")
     gust = serializers.DecimalField(max_digits=5, decimal_places=2, required=False)
-    direction = serializers.CharField(max_length=3)
+    direction = serializers.CharField(max_length=3, help_text="Wind direction code")
 
     class Meta:
         fields = '__all__'
 
 
 class WeatherSerializer(serializers.Serializer):
-    wind = WindSerializer()
-    temp_fahrenheit = serializers.DecimalField(max_digits=5, decimal_places=2)
-    temp_celsius = serializers.DecimalField(max_digits=5, decimal_places=2)
-    description = serializers.CharField(max_length=255)
-    icon = serializers.CharField(max_length=3)
-    humidity = serializers.IntegerField()
-    pressure_hpa = serializers.IntegerField()
-    pressure_mmhg = serializers.DecimalField(max_digits=6, decimal_places=2)
-    pop = serializers.IntegerField()
+    wind = WindSerializer(help_text="Wind data")
+    temp_fahrenheit = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Temperature in fahrenheit")
+    temp_celsius = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Temperature in celsius")
+    description = serializers.CharField(max_length=255, help_text="Short weather description")
+    icon = serializers.CharField(max_length=3, help_text="Weatehr icon code")
+    humidity = serializers.IntegerField(help_text="Humidity")
+    pressure_hpa = serializers.IntegerField(help_text="Pressure in hpa")
+    pressure_mmhg = serializers.DecimalField(max_digits=6, decimal_places=2, help_text="Pressure in mmhg")
+    pop = serializers.IntegerField(help_text="Probability of precipitation in %")
 
     class Meta:
         fields = '__all__'
