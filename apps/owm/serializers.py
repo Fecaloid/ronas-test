@@ -4,6 +4,9 @@ from config.settings import DEFAULT_COUNTRY_CODE, DEFAULT_LANGUAGE_CODE
 
 
 class GetWeatherSerializer(serializers.Serializer):
+    """
+    Request weather data serializer
+    """
     city = serializers.CharField(max_length=255, label="City name", help_text="City name")
     country_code = serializers.CharField(max_length=2, default=DEFAULT_COUNTRY_CODE)
     language_code = serializers.CharField(max_length=2, default=DEFAULT_LANGUAGE_CODE)
@@ -13,6 +16,9 @@ class GetWeatherSerializer(serializers.Serializer):
 
 
 class WindSerializer(serializers.Serializer):
+    """
+    Wind data serializer
+    """
     speed = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Wind speed")
     deg = serializers.IntegerField(help_text="Wind direction in deg")
     gust = serializers.DecimalField(max_digits=5, decimal_places=2, required=False)
@@ -23,6 +29,9 @@ class WindSerializer(serializers.Serializer):
 
 
 class WeatherSerializer(serializers.Serializer):
+    """
+    Full weather data serializer
+    """
     wind = WindSerializer(help_text="Wind data")
     temp_fahrenheit = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Temperature in fahrenheit")
     temp_celsius = serializers.DecimalField(max_digits=5, decimal_places=2, help_text="Temperature in celsius")
