@@ -8,11 +8,9 @@ schema_view = get_schema_view(
         title="Ronas test API",
         default_version='v1',
         description="Ronas test API",
-        license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=[permissions.AllowAny],
-    authentication_classes=[]
+    permission_classes=[permissions.AllowAny]
 )
 
 urlpatterns = [
